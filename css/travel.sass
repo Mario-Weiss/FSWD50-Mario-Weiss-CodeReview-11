@@ -1,0 +1,43 @@
+body
+	min-width: 320px
+	transition: 1
+header
+	background: url("../img/bg1.jpg") no-repeat center center
+	background-size: cover
+	background-blend-mode: darken
+	transition: background 3s
+	h1
+		text-shadow: 1px 1px 0 white, -1px -1px 0 white, 0 0 25px white
+.row
+	margin: 0
+#Locations, #Restaurants, #Events
+	img
+		width: 100%
+		height: 70vw
+		object-fit: cover
+@media screen and (min-width: 768px)
+	#Locations, #Restaurants, #Events
+		img
+			height: 35vw
+	header
+		height: 20vw
+@media screen and (min-width: 992px)
+	#Locations, #Restaurants, #Events
+		img
+			height: 22vw
+@media screen and (min-width: 1200px)
+	#Locations, #Restaurants, #Events
+		img
+			height: 17.5vw
+@media screen and (max-width: 576px)
+	#nav-tab
+		flex-direction: column
+		.nav-link
+			border: none
+		p, h1
+			margin: 0
+		.active
+			background: none
+
+
+ 
