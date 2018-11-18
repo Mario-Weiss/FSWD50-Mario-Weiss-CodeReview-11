@@ -45,6 +45,7 @@ function edit(table,id) {
         dataType:"text",
         success:function(data) {  
             data = $.parseJSON(data);
+            console.log(data);
             $("#id").val(data.id);
             $("#name").val(data.name);
             $("#adress").val(data.adress);
@@ -60,7 +61,7 @@ function edit(table,id) {
                $("#phone").val(data.phone); 
             }
             if (table == 'event') {
-               $("#datetime").val(data.datetime); 
+               $("#datetime").val(data.datetime.replace(" ","T")); 
                $("#price").val(data.price); 
             }
         }
@@ -114,7 +115,7 @@ function deleteIt(table,id) {
                 buttons: true,
                 dangerMode: true,
             })
-                .then((willDelete) => {
+                .then((willDelete)=>{
                 if (willDelete) {
                     $.ajax({
                         url:"actions/a_delete.php",
@@ -131,6 +132,39 @@ function deleteIt(table,id) {
                 swal("Your data is safe!");
                 }
                 });
+}
+
+function details(table,id) {
+    showLocation(table);
+    $.ajax({
+        url:"actions/a_read.php",
+        method: "post",
+        data:{details:1, 'table':table,'id':id},
+        dataType:"text",
+        success:function(data) {  
+            data = $.parseJSON(data);
+            $("#detailsTitle").html(data.name);
+            $("#details_name").html(data.name);
+            $("#details_adress").html(data.adress+", "+data.zip+" "+data.city+" - "+data.country+" <a href='https://www.google.com/maps/place/"+data.zip+" "+data.city+", "+data.adress+"' title='show location on google maps'><i class='fas fa-map-marker-alt'></i></a>")
+            $("#details_image").attr("src", "img/"+data.image);
+            $("#details_type").html(data.type);
+            $("#details_short_desc").html(unescape(data.short_desc));
+            $("#details_web").html('<a href="'+data.web+'">'+data.web+'</a>');
+            if (table == 'poi') {
+                data.table = 'Point of Interest';
+            }
+            if (table == 'restaurant') {
+                data.table = 'Restaurant';
+                $("#details_phone").html(data.phone); 
+            }
+            if (table == 'event') {
+                data.table = 'Event';
+                $("#details_datetime").html(data.datetime); 
+                $("#details_price").html('&euro; '+Number(data.price).toFixed(2)); 
+            }
+            $("#details_table").html(data.table);
+        }
+    });
 }
 
 function showLocation(location) {

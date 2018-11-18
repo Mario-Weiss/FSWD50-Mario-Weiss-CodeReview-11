@@ -56,7 +56,7 @@ if (isset($_SESSION['user'])) {
 			}
 			$result.='
 					<div class="card-footer">			
-							<a onclick="" href="" data-toggle="modal" class="btn btn-sm btn-outline-success mx-2">details</a>';
+							<a onclick="details(\''.$row['table'].'\', '.$row['id'].')" href="" data-toggle="modal" data-target="#details" class="btn btn-sm btn-outline-success mx-2">details</a>';
 			if (isset($_SESSION['admin'])){
 				$result .='
 							<a onclick="edit(\''.$row['table'].'\', '.$row['id'].')" href="" class="btn btn-sm btn-outline-primary mx-2" data-toggle="modal" data-target="#form">edit</a>
@@ -72,7 +72,7 @@ if (isset($_SESSION['user'])) {
 		echo $result;
 	}
 
-	if (isset($_POST["edit"])){
+	if (isset($_POST["edit"]) || isset($_POST["details"])){
 		$table = $_POST['table'] ?? '';
 		$fields = '*, "'.$table.'" as "table"';
 		$id = $_POST['id'] ?? '';

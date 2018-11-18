@@ -18,9 +18,11 @@ if (isset($_SESSION['user'])) {
 
 	include "includes/_form.php";
 
+	include "includes/_details.php";
+
 	include "includes/_foot.php";
  ?>
-	<script src="js/travel.js"></script>
+	<script src="js/travel.min.js"></script>
 
 
 <?php } elseif (isset($_GET['signup']) || isset($_POST['signup'])) {
