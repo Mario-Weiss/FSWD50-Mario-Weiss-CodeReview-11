@@ -27,16 +27,7 @@ class Database {
 		$fields = is_array($fields) ? implode(", ", $fields) : $fields;
 		$join = is_array($join) ? implode(" ", $join) : $join;
 		$sql = "SELECT ".$fields." FROM ".$table." ".$join." ".$where." ".$orderby." ;";
-		/*if (is_array($where)) {
-			$condition = '';
-			foreach ($where as $key => $value) {
-				if($condition != ''){
-	   				$condition .=" AND ";
-	  			}
-	 			$condition .= $key . "='" . $value . "'";
-	 		}
-	 		$where = $condition;
-	 	}*/
+	 	//only for testing echo $sql;
 		$result = $this->connection->query($sql);
 		$return = $result->fetch_all(MYSQLI_ASSOC);
 		mysqli_close($this->connection);
@@ -78,7 +69,20 @@ class Database {
 		$sql = "INSERT INTO ".$table." (".$fields.") VALUES (".$sql.");";
 		$res = $this->connection->query($sql);
 		mysqli_close($this->connection);
-		return $res;
+	}
+
+	public function delete($table,$condition) {
+		$this->connect();
+		$sql='';
+		foreach ($condition as $key => $value) {
+			if($sql != ''){
+   				$sql .=" AND ";
+  			}
+ 			$sql .= $key . "='" . $value . "'";
+ 		}
+		$sql="DELETE FROM ".$table." WHERE ".$sql;
+		$result = $this->connection->query($sql);
+		mysqli_close($this->connection);
 	}
 }
 

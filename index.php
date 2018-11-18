@@ -112,7 +112,7 @@ if (isset($_SESSION['user'])) {
 					<p class="text-danger">&nbsp;<?php if (isset($nameError)){echo $nameError;}; ?></p>
 					<input class="form-control mx-2" type="email" name="email" placeholder="Enter Your Email" maxlength="40" value="<?php if (isset($email)){echo $email;} ?>" >
 					<p class="text-danger">&nbsp;<?php if (isset($emailError)){echo $emailError;} ?></p>
-					<input class="form-control mx-2" type="password" name="pass" placeholder="Enter Password" maxlength="25"><br>
+					<input class="form-control mx-2" type="password" name="pass" placeholder="Enter Password" maxlength="25">
 					<p class="text-danger">&nbsp;<?php if (isset($passError)){echo $passError;} ?></p>
         			<button type="submit" class="btn btn-sm btn-outline-success mx-2" name="signup">Sign Up</button>
         		</form>

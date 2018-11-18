@@ -38,6 +38,7 @@ if( isset($_POST['login'])) {
         } else {
             $errMSG = "Incorrect Credentials, Try again...";
             header("Location: index.php?email=".$email."&error=".$errMSG);
+            exit;
         }
 	}
 
