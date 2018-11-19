@@ -27,7 +27,7 @@ class Database {
 		$fields = is_array($fields) ? implode(", ", $fields) : $fields;
 		$join = is_array($join) ? implode(" ", $join) : $join;
 		$sql = "SELECT ".$fields." FROM ".$table." ".$join." ".$where." ".$orderby." ;";
-	 	//only for testing echo $sql;
+	 	//echo $sql; //only for testing 
 		$result = $this->connection->query($sql);
 		$return = $result->fetch_all(MYSQLI_ASSOC);
 		mysqli_close($this->connection);
@@ -60,12 +60,18 @@ class Database {
 		$fields = is_array($fields) ? implode(", ", $fields) : $fields;
 		//$values = implode("','", $values);
 		$sql = '';
-		foreach ($values as $value) {
-			if ($sql !=''){
-				$sql .=", ";
-			}
-			$sql .= "'".mysqli_real_escape_string($this->connection,$value)."'";
+		if (is_array($values)){
+			foreach ($values as $value) {
+						if ($sql !=''){
+							$sql .=", ";
+						}
+						$sql .= "'".mysqli_real_escape_string($this->connection,$value)."'";
+					}
+
+		} else {
+			$sql = $values;
 		}
+		
 		$sql = "INSERT INTO ".$table." (".$fields.") VALUES (".$sql.");";
 		$res = $this->connection->query($sql);
 		mysqli_close($this->connection);

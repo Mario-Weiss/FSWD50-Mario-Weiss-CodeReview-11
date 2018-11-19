@@ -1,4 +1,3 @@
-
 function fadeImage() {
     var x = 11; //number of images
     for (var i = 1; i <= x; ++i) {
@@ -45,7 +44,6 @@ function edit(table,id) {
         dataType:"text",
         success:function(data) {  
             data = $.parseJSON(data);
-            console.log(data);
             $("#id").val(data.id);
             $("#name").val(data.name);
             $("#adress").val(data.adress);
@@ -181,6 +179,22 @@ function sort(sorting) {
     orderby = 'ORDER BY '+sorting;
     render();
 
+}
+
+function like(table,id,user) {
+    $.ajax({
+        url:"actions/a_like.php",
+        method: "post",
+        data:{check:1, 'table':table,'id':id,'user':user},
+        dataType:"text",
+        success:function(data) {
+            if (data == 'true') {
+                swal("You already like this!", "", "info");
+            }   else {
+                render();
+            }
+        }
+    })
 }
 
 // get the value of checked box

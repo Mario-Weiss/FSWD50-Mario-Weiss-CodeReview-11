@@ -31,6 +31,7 @@ if( isset($_POST['login'])) {
 		$row = $obj->read($table,$fields='*',$condition);
         if ( $row != [] && password_verify($pass, $row[0]['pw']) ) {
             $_SESSION['user'] = $row[0]['name'];
+            $_SESSION['user_id'] = $row[0]['id'];
             if ( $row[0]['role'] == 2) {
             	$_SESSION['admin'] = 'nimda';
             }

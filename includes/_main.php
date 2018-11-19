@@ -26,6 +26,7 @@ if (isset($_SESSION['user'])) {
 			<a class="dropdown-item">Category: <i onclick="sort('`table` asc')" class="fas fa-angle-up"></i> <i onclick="sort('`table` desc')" class="fas fa-angle-down"></i></a>
 			<a class="dropdown-item">Type: <i onclick="sort('`type` asc')" class="fas fa-angle-up"></i> <i onclick="sort('`type` desc')" class="fas fa-angle-down"></i></a>
 			<a class="dropdown-item">Date created: <i onclick="sort('`c_date` asc')" class="fas fa-angle-up"></i> <i onclick="sort('`c_date` desc')" class="fas fa-angle-down"></i></a>
+			<a class="dropdown-item">Likes: <i onclick="sort('`nlikes` asc')" class="fas fa-angle-up"></i> <i onclick="sort('`nlikes` desc')" class="fas fa-angle-down"></i></a>
 			</div>
 		</div>
 		<form class="form-inline">
