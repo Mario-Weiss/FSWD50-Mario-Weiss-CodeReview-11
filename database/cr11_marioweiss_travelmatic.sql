@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 18. Nov 2018 um 16:08
+-- Erstellungszeit: 19. Nov 2018 um 01:13
 -- Server-Version: 10.1.30-MariaDB
 -- PHP-Version: 7.2.1
 
@@ -61,6 +61,33 @@ INSERT INTO `event` (`id`, `name`, `adress`, `zip`, `city`, `country`, `image`, 
 (6, 'Glow in the Dark - Circusshow', 'Kultursaal VÃ¶sendorf, Kindbergstrasse 12', '2331', 'VÃ¶sendorf', 'Austria', 'glow.jpg', 'circus show', 'A glow in the dark circus show...', '2018-10-27 17:00:00', '13.00', 'http://www.zirkusstoffl.at', '2018-11-17 23:47:33', '2018-11-17 23:47:33'),
 (7, 'Paul Pizzera & Otto Jaus - UnerhÃ¶rt Solide', 'Republic - Anton-Neumayr-Platz 2', '5020', 'Salzburg', 'Austria', 'paul.jpg', 'live concert', 'Paul Pizzera & Otto Jaus, the two hottest irons the Austrian cabaret landscape currently has to offer, set off to the halls of the country with their UNERHÃ–RT-SOLIDE-TOUR to do what they do best: Inspire! Together on stage, they are willing to turn every cabaret into a cauldron of ecstasy and even the most massive cabaret stage to level the ground! Music cabaret at its finest, which consists of self-irony, honesty and the joy of life and demands both of talent and passion to the last sound. A 10.0 on the poetry scale and the art of laughing about life.', '2019-02-09 20:00:00', '41.00', 'http://www.paulpizzera.at/pizzera-jaus', '2018-11-17 23:49:14', '2018-11-17 23:49:14'),
 (8, 'Elton John', 'Messe Graz - Messeplatz 1', '8010', 'Graz', 'Austria', 'elton.jpg', 'live concert', 'After more than half a century on the road and an unparalleled career that has redefined the cultural landscape and seen him claim his place as a true global icon, Elton has announced via an exclusive VR180 Live Stream on YouTube, details of his final tour called \\\'Farewell Yellow Brick Road\\\'.', '2019-07-03 20:00:00', '149.90', 'https://www.eltonjohn.com/', '2018-11-17 23:51:20', '2018-11-17 23:51:20');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `likes`
+--
+
+DROP TABLE IF EXISTS `likes`;
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `table_name` varchar(55) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `likes`
+--
+
+INSERT INTO `likes` (`id`, `user_id`, `table_name`, `location_id`, `timestamp`) VALUES
+(1, 2, 'poi', 1, '2018-11-18 18:12:03'),
+(2, 2, 'poi', 2, '2018-11-18 20:45:27'),
+(3, 3, 'poi', 2, '2018-11-18 20:45:27'),
+(4, 3, 'poi', 3, '2018-11-18 23:14:13'),
+(5, 3, 'poi', 7, '2018-11-18 23:15:16'),
+(6, 3, 'poi', 1, '2018-11-19 00:10:08');
 
 -- --------------------------------------------------------
 
@@ -192,6 +219,13 @@ ALTER TABLE `event`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indizes für die Tabelle `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indizes für die Tabelle `poi`
 --
 ALTER TABLE `poi`
@@ -226,10 +260,16 @@ ALTER TABLE `event`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT für Tabelle `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT für Tabelle `poi`
 --
 ALTER TABLE `poi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT für Tabelle `restaurant`
@@ -248,6 +288,16 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `likes`
+--
+ALTER TABLE `likes`
+  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
