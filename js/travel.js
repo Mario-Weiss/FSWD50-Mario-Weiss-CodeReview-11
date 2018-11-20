@@ -1,15 +1,26 @@
-function fadeImage() {
-    var x = 11; //number of images
-    for (var i = 1; i <= x; ++i) {
-        new Image().src = "img/bg" + i + ".jpg";
-    }
-    // caches images, avoiding white flash between background replacements
-    var i = Math.ceil(Math.random() * x);
-    document.getElementById("header").style.background = "url(img/bg" + i + ".jpg) no-repeat center center";
-    document.getElementById("header").style.backgroundSize = "cover";
-    setTimeout(function () { fadeImage(); }, 5000);
+//---prepare images---//
+//---input all images to the bg_images array and store the in the img/course_space folder---//
+var bg_images = ["bg1.jpg","bg2.jpg","bg3.jpg","bg4.jpg","bg5.jpg","bg6.jpg","bg7.jpg","bg8.jpg","bg9.jpg","bg10.jpg","bg11.jpg"]
+
+var images = []
+var x = bg_images.length; //number of images
+//---precaching images starts here---//
+for (let i = 0; i < x; ++i) {
+    images[i] = new Image()
+    images[i].src = "img/" + bg_images[i];
 }
-fadeImage();
+// caches images, avoiding white flash between background replacements
+//---function to change background image when it is called---//
+function fadeImage(i) {
+    if (i >= x) {i = 0};
+    document.getElementById("header").style.background = "url(img/" + bg_images[i] + ") no-repeat center center";
+    document.getElementById("header").style.backgroundSize = "cover";
+    //document.getElementById("header").style.backgroundAttachment = "fixed";
+    setTimeout(function () { fadeImage(i+1); }, 8000); // recalls function every 8 seconds
+    //---for random image view use: setTimeout(function () { fadeImage(Math.round(Math.random() * x)); }, 5000);
+}
+//---initially call function---//
+fadeImage(0);
 
 var view = 'all';
 var orderby = '';

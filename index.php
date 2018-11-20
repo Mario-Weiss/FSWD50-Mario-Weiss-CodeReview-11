@@ -107,7 +107,7 @@ if (isset($_SESSION['user'])) {
 
 <div class="container-fluid pt-5">
 		<div class="row">
-			<div class="col-12 col-md-6 text-center align-content-center m-auto">
+			<div class="col-12 col-md-6 col-lg-4 col-xl-3 text-center align-content-center m-auto">
 				<h2>Please Sign Up</h2><br>
 				<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" accept-charset="utf-8">   
           			<input class="form-control mx-2" type="text" name="name" placeholder="Enter Name" maxlength="50" value="<?php if (isset($name)){echo $name;} ?>" >
@@ -132,7 +132,7 @@ if (isset($_SESSION['user'])) {
 
 <div class="container-fluid pt-5">
 		<div class="row">
-			<div class="col-12 col-md-6 text-center align-content-center m-auto">
+			<div class="col-12 col-md-6 col-lg-4 col-xl-3 text-center align-content-center m-auto">
 				<h2>Please Log In</h2><br>
 				<form action="login.php" method="post" accept-charset="utf-8">   
           			<input class="form-control mx-2" type="email" placeholder="Email" aria-label="Search"  name="email" value="<?php if (isset($_GET['email'])){echo $_GET['email'];}; ?>"><br>

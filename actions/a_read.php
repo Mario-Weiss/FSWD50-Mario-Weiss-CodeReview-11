@@ -52,11 +52,11 @@ if (isset($_SESSION['user'])) {
 			if ($row['table'] == 'restaurant') {
 				$result .='
 						<a href="'.$row['web'].'"><i class="fas fa-globe"></i> '.$row['web'].'</a>
-    					<p><i class="fas fa-phone"></i> '.$row['phone'].'</p>';
+    					<p class="card-text"><i class="fas fa-phone"></i> '.$row['phone'].'</p>';
 			} elseif ($row['table'] == 'event') {
 				$result .='
 						<a href="'.$row['web'].'"><i class="fas fa-globe"></i> '.$row['web'].'</a>
-    					<p><i class="far fa-calendar-alt"></i> &nbsp;'.$row['datetime'].'<br>
+    					<p class="card-text"><i class="far fa-calendar-alt"></i> &nbsp;'.$row['datetime'].'<br>
 							<i class="far fa-money-bill-alt"></i> &nbsp;'.$row['price'].'</p>';
 			}
 			$result .='
